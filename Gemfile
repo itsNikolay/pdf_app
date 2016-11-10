@@ -46,3 +46,32 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'spring-commands-rspec'
+end
+
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
+end
+
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+end
+
+gem 'devise'
+gem 'pundit'
+gem 'carrierwave'
