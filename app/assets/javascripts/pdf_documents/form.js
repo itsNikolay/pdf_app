@@ -1,16 +1,16 @@
 window.onload = function () {
-  var fileInput = document.querySelector('#pdf_document_files');
+  var input = document.querySelector('#pdf_document_files');
+  var fileInput = new FileInput(input);
   var preview = document.querySelector('#preview');
-  var filePreview = new FilePreview(fileInput, preview);
-
   var form = document.querySelector('#new_pdf_document');
+
   form.onsubmit = function(e) {
     e.preventDefault();
-    console.log(filePreview.previewFiles);
+    console.log(fileInput.files);
 
     var data = {
-      files: filePreview.previewFiles.map(function(previewFile) {
-        return previewFile.reader.result;
+      files: fileInput.files.map(function(previewFile) {
+        return previewFile.result;
       })
     };
 
@@ -18,6 +18,13 @@ window.onload = function () {
       .post('/pdf_documents.json', data)
       .then(function (response) {
         console.log(response);
+        var urls = response.pdf_files.map(function(pdfFile) {
+          return pdfFile.file.url;
+        });
+        urls.forEach(function(url) {
+          var element = new PreviewImage(url).domElement;
+          preview.append(element);
+        })
       }).catch(function (error) {
         console.log(error);
       });
