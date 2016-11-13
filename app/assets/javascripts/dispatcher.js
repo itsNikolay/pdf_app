@@ -6,6 +6,7 @@ window.onload = function () {
   var fileInput = new FileInput(input);
   fileInput.onReady = function(_fileInput) {
     var imageUploader = new ImageUploader(_fileInput);
+
     imageUploader.onSuccess = function(response) {
       var urls = response.data.pdf_files.map(function(pdfFile) {
         return pdfFile.file.url;
@@ -16,6 +17,8 @@ window.onload = function () {
         preview.append(element);
       });
       fileInput.emptyReaders();
+
+      fileInput.pdfDocumentId = response.data.id;
     };
 
     imageUploader.upload()

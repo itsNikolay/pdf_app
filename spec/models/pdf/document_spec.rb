@@ -27,7 +27,7 @@ RSpec.describe Pdf::Document, type: :model do
         }
       end
       subject { described_class.new(params) }
-      it { require 'pry'; binding.pry;is_expected.to be_valid }
+      it { is_expected.to be_valid }
     end
   end
 end
