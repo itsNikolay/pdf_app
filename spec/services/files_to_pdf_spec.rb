@@ -1,28 +1,11 @@
 RSpec.describe FilesToPdf do
   let(:files) do
     [
-      UploadedFile.new(
-        base64: FileToBase64.new(
-          fixture_path + '/images/sample.jpg'
-        ).base64,
-        ext: '.jpg'
-      ),
-      UploadedFile.new(
-        base64: FileToBase64.new(
-          fixture_path + '/images/sample.png'
-        ).base64,
-        ext: '.png'
-      ),
-      UploadedFile.new(
-        base64: FileToBase64.new(
-          fixture_path + '/images/sample.gif'
-        ).base64,
-        ext: '.gif'
-      ),
+      File.open(fixture_path + '/images/sample.jpg'),
+      File.open(fixture_path + '/images/sample.png'),
+      File.open(fixture_path + '/images/sample.gif'),
     ]
   end
-
-  after { files.map(&:file).map(&:unlink) }
 
   subject(:instance) { described_class.new(files) }
 

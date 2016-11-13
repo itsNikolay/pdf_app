@@ -4,7 +4,6 @@ p
   = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg'
 
 p
-  = form_for @pdf_document, format: :json do |f|
-    = f.submit
+  = link_to 'Download', '#', id: 'download'
 
 #preview

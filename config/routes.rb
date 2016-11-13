@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :pdf_documents, only: [:index, :create, :update]
+  resources :pdf_documents, only: [:index, :create, :update, :show]
 end

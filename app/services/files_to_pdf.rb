@@ -16,6 +16,6 @@ class FilesToPdf
   end
 
   def pathes
-    @pathes ||= files.map(&:file).map(&:path)
+    @pathes ||= files.map(&:path)
   end
 end
