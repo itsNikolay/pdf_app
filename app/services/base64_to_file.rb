@@ -6,7 +6,7 @@ class Base64ToFile
   end
 
   def file
-    @tempfile ||= Tempfile.new(['foo', ".#{ext}"]).tap do |f|
+    @tempfile ||= Tempfile.new(['file', ".#{ext}"]).tap do |f|
       f.binmode
       f.write(content)
       f.close

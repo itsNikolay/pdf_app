@@ -1,13 +1,11 @@
 var PreviewImage = function(url) {
   this.url = url;
-  this.buildDomElement;
 };
 
-ImageFile.prototype.buildDomElement = function(e) {
+PreviewImage.prototype.domElement = function() {
   var image = new Image();
   image.height = 100;
-  image.title = this.file.name;
-  image.src = this.reader.result;
+  image.src = this.url;
   image.classList.add("preview-image");
-  this.domElement = image;
+  return image;
 };

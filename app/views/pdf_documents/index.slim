@@ -1,5 +1,10 @@
 h1 Upload Your files
-= form_for @pdf_document, format: :json do |f|
-  #preview
-  = f.file_field :files, multiple: true
-  = f.submit
+
+p
+  = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg'
+
+p
+  = form_for @pdf_document, format: :json do |f|
+    = f.submit
+
+#preview
