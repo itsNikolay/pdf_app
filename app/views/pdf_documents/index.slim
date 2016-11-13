@@ -1,2 +1,5 @@
+h1 Upload Your files
 = form_for @pdf_document, format: :json do |f|
-  = f.text_field :id
+  #preview
+  = f.file_field :files, multiple: true
+  = f.submit

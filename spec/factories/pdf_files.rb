@@ -3,6 +3,6 @@ FactoryGirl.define do
     file Rack::Test::UploadedFile.new(
       File.join("#{Rails.root}/spec/fixtures/images/sample.jpg")
     )
-    document { create :pdf_document }
+    pdf_document
   end
 end

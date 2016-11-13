@@ -7,8 +7,8 @@ FactoryGirl.define do
       )
     end
 
-    trait :with_files do
-      files { create_list 3, :file }
+    trait :with_pdf_files do
+      pdf_files { [create(:pdf_file)] }
     end
   end
 end
