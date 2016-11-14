@@ -20,7 +20,7 @@ FileInput.prototype.addFile = function(imageReader) {
   this.readers.push(imageReader);
 
   if (this.readers.length === this.input.files.length) {
-    this.fire('readers:finished');
+    this.fire('readers:finished', this.readers);
   }
 };
 

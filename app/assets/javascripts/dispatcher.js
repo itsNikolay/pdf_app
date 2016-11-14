@@ -11,12 +11,12 @@ window.onload = function () {
         var preview  = document.querySelector('#preview');
         var download = document.querySelector('#download');
 
-        var fileInput = new FileInput(input);
+        var fileInput        = new FileInput(input);
+        var imageUploader    = new ImageUploader();
+        var downloadLink     = new DownloadLink(download);
         var previewContainer = new PreviewContainer(preview);
-        var imageUploader = new ImageUploader();
-        var downloadLink = new DownloadLink(download);
 
-        fileInput.on('readers:finished', imageUploader.upload.bind(imageUploader, fileInput));
+        fileInput.on('readers:finished', imageUploader.upload.bind(imageUploader));
         imageUploader.on('ajax:success', fileInput.clearReaders.bind(fileInput));
         imageUploader.on('ajax:success', downloadLink.refresh.bind(downloadLink));
         imageUploader.on('ajax:success', function(response) {
