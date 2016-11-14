@@ -1,29 +1,30 @@
-var ImageUploader = function(fileInput) {
-  this.fileInput = fileInput;
-};
+var ImageUploader = function() {};
 
-ImageUploader.prototype.upload = function() {
-  var path, method;
-  var pdfDocumentId = this.fileInput.pdfDocumentId;
-  var data = {
-    files: this.fileInput.readers.map(function(reader) {
-      return reader.result;
+MicroEvent.mixin(ImageUploader);
+
+ImageUploader.prototype.upload = function(readers) {
+  var path, method, data;
+  data = {
+    files: readers.map(function(reader) {
+      return reader.reader.result;
     })
   };
 
-  if (pdfDocumentId) {
-    path = '/pdf_documents/'+pdfDocumentId+'.json';
+  if (this.pdfDocumentId) {
+    path   = '/pdf_documents/'+this.pdfDocumentId+'.json';
     method = 'put';
   } else {
-    path = '/pdf_documents.json';
+    path   = '/pdf_documents.json';
     method = 'post';
   }
 
   axios[method](path, data)
-    .then(function (onSuccess, response) {
-      onSuccess && onSuccess(response);
-    }.bind(null, this.onSuccess))
+    .then(function (response) {
+      this.pdfDocumentId = response.data.id;
+      this.fire('ajax:success', response);
+    }.bind(this))
     .catch(function (error) {
       console.log(error);
-    });
+      this.fire('ajax:error', error)
+    }.bind(this));
 };

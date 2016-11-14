@@ -12,17 +12,15 @@ FileInput.prototype.inputChanged = function(e) {
 
 FileInput.prototype.readFile = function(file) {
   var imageReader = new ImageReader();
-  var onFileReady = function(imageReader) {
-    this.addFile(imageReader);
-  };
-  imageReader.read(file, onFileReady.bind(this));
+  imageReader.on('read', this.addFile.bind(this));
+  imageReader.read(file);
 };
 
 FileInput.prototype.addFile = function(imageReader) {
   this.readers.push(imageReader);
 
   if (this.readers.length === this.input.files.length) {
-    this.fire('ready');
+    this.fire('readers:finished');
   }
 };
 

@@ -1,14 +1,15 @@
 var ImageReader = function() {};
 
-ImageReader.prototype.read = function(file, onready) {
+MicroEvent.mixin(ImageReader);
+
+ImageReader.prototype.read = function(file) {
   this.file = file;
-  this.onready = onready;
 
   this.reader = new FileReader();
   this.reader.onload = this.onLoad.bind(this);
   this.reader.readAsDataURL(file);
 };
 
-ImageReader.prototype.onLoad = function(e) {
-  this.onready(this.reader);
+ImageReader.prototype.onLoad = function() {
+  this.fire('read', this);
 };

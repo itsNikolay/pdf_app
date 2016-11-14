@@ -26,9 +26,14 @@ class PdfDocumentsController < ApplicationController
 
   def show
     @pdf_document = Pdf::Document.find(params[:id])
-    path = '/tmp/sample.pdf'
-    FilesToPdf.new(@pdf_document.pdf_files.map(&:file)).write_file(path)
-    send_file path
+
+    respond_to do |format|
+      format.pdf {
+        path = '/tmp/sample.pdf'
+        FilesToPdf.new(@pdf_document.pdf_files.map(&:file)).write_file(path)
+        send_file path, type: 'application/pdf'
+      }
+    end
   end
 
   private
