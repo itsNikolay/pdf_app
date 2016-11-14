@@ -20,11 +20,11 @@ class Base64ToFile
   end
 
   def content_type
-    @content_type ||= split.first.match(/\:(.*)\;/i)
+    @content_type ||= split.first.match(/\:(.*)\;/i).captures.first
   end
 
   def ext
-    @ext ||= Mime::Type.lookup('image/jpeg').to_sym
+    @ext ||= Mime::Type.lookup(content_type).to_sym
   end
 
   def content

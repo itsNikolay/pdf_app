@@ -24,7 +24,7 @@ FileInput.prototype.addFile = function(imageReader) {
   }
 };
 
-FileInput.prototype.emptyReaders = function() {
+FileInput.prototype.clearReaders = function() {
   this.readers = [];
   this.input.value = '';
 };

@@ -2,10 +2,10 @@ var ImageUploader = function() {};
 
 MicroEvent.mixin(ImageUploader);
 
-ImageUploader.prototype.upload = function(readers) {
+ImageUploader.prototype.upload = function(fileInput) {
   var path, method, data;
   data = {
-    files: readers.map(function(reader) {
+    files: fileInput.readers.map(function(reader) {
       return reader.reader.result;
     })
   };

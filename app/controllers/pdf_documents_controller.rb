@@ -46,6 +46,7 @@ class PdfDocumentsController < ApplicationController
 
   def unlink_files
     files.each(&:unlink)
+    @files = nil
   end
 
   def files
