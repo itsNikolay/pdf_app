@@ -2,9 +2,10 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title PdfApp
+    title= content_for :title
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
   body data-controller=controller_name data-action=action_name
+    = render partial: 'header'
     = yield
     = javascript_include_tag 'application'

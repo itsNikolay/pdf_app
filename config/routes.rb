@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'image_to_pdf_documents#index'
+  root 'welcome#index'
 
   devise_for :users
 
