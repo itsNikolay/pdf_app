@@ -5,16 +5,16 @@ MicroEvent.mixin(ImageUploader);
 ImageUploader.prototype.upload = function(readers) {
   var path, method, data;
   data = {
-    files: readers.map(function(reader) {
+    images: readers.map(function(reader) {
       return reader.reader.result;
     })
   };
 
   if (this.pdfDocumentId) {
-    path   = '/pdf_documents/'+this.pdfDocumentId+'.json';
+    path   = '/image_to_pdf_documents/'+this.pdfDocumentId+'.json';
     method = 'put';
   } else {
-    path   = '/pdf_documents.json';
+    path   = '/image_to_pdf_documents.json';
     method = 'post';
   }
 

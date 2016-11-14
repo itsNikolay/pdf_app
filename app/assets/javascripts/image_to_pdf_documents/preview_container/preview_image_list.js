@@ -4,8 +4,8 @@ var PreviewImageList = function(response) {
 
 PreviewImageList.prototype.elements = function() {
   var data = this.response.data;
-  return data.pdf_files.map(function(pdfFile) {
-    var url = pdfFile.file.url;
+  return data.image_to_pdf_images.map(function(image) {
+    var url = image.attachment.url;
     var image = new PreviewImage(url)
     return image.domElement();
   });

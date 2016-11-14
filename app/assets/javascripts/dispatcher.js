@@ -5,7 +5,7 @@ window.onload = function () {
   var action     = dataset.action;
 
   switch (controller) {
-    case 'pdf_documents':
+    case 'image_to_pdf_documents':
       if (action === 'index') {
         var input    = document.querySelector('#files');
         var preview  = document.querySelector('#preview');

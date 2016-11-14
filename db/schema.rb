@@ -16,17 +16,17 @@ ActiveRecord::Schema.define(version: 20161112140141) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "pdf_documents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "image_to_pdf_documents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pdf_files", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "file",            null: false
-    t.uuid     "pdf_document_id", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["pdf_document_id"], name: "index_pdf_files_on_pdf_document_id", using: :btree
+  create_table "image_to_pdf_images", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "attachment",               null: false
+    t.uuid     "image_to_pdf_document_id", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["image_to_pdf_document_id"], name: "index_image_to_pdf_images_on_image_to_pdf_document_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

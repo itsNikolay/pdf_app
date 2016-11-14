@@ -1,4 +1,4 @@
 //= require axios
 //= require microevent
-//= require_tree ./pdf_documents
+//= require_tree ./image_to_pdf_documents
 //= require dispatcher
