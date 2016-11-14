@@ -4,6 +4,8 @@ var FileInput = function (input) {
   this.readers = [];
 };
 
+MicroEvent.mixin(FileInput);
+
 FileInput.prototype.inputChanged = function(e) {
   [].forEach.call(this.input.files, this.readFile.bind(this));
 };
@@ -20,15 +22,11 @@ FileInput.prototype.addFile = function(imageReader) {
   this.readers.push(imageReader);
 
   if (this.readers.length === this.input.files.length) {
-    this.fireOnReady(this)
+    this.fire('ready');
   }
 };
 
-FileInput.prototype.fireOnReady = function(fileInput) {
-  this.onReady && this.onReady(fileInput);
-};
-
-FileInput.prototype.emptyReaders = function(fileInput) {
+FileInput.prototype.emptyReaders = function() {
   this.readers = [];
   this.input.value = '';
 };
