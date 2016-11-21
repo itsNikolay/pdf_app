@@ -1,0 +1,12 @@
+version: '2'
+services:
+  nginx:
+    image: quay.io/letsencrypt/letsencrypt:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    #command: "certonly --agree-tos --webroot -w /etc/letsencrypt -v -t -n -m itsnikolay@gmail.com -d lets.itsnikolay.ru"
+    command: "mkdir -p /etc/letsencrypt/certs && openssl dhparam -out /etc/letsencrypt/certs/dhparam.pem 4096"
+    command: "certonly --standalone --agree-tos -w /etc/letsencrypt -v -t -n -m itsnikolay@gmail.com -d file-converter.online"

@@ -1,0 +1,75 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /root/public:/etc/public
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /root/nginx/conf.d:/etc/nginx/conf.d
+    links:
+      - green_rails
+      - blue_rails
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - /root/redis/data:/data
+    command: redis-server --appendonly yes
+
+  postgres:
+    image: postgres:9.5-alpine
+    env_file: .env
+    volumes:
+      - /root/postgres/data:/var/lib/postgresql/data
+      - /usr/share/zoneinfo:/usr/share/zoneinfo
+
+  green_rails:
+    image: reg.file-converter.online:5000/pdf_app
+    env_file: .env
+    restart: always
+    volumes:
+      - /root/public:/rails_app/public
+      - /root/rails/rails-entrypoint.sh:/rails_app/rails-entrypoint.sh
+    volumes_from:
+      - green_busybox
+    links:
+      - postgres
+      - redis
+    depends_on:
+      - postgres
+      - redis
+      - green_busybox
+    entrypoint: ./rails-entrypoint.sh
+    command: bundle exec puma -C config/puma_production.rb -v
+
+  blue_rails:
+    image: reg.file-converter.online:5000/pdf_app
+    env_file: .env
+    restart: always
+    volumes:
+      - /root/public:/rails_app/public
+      - /root/rails/rails-entrypoint.sh:/rails_app/rails-entrypoint.sh
+    volumes_from:
+      - blue_busybox
+    links:
+      - postgres
+      - redis
+    depends_on:
+      - postgres
+      - redis
+      - blue_busybox
+    entrypoint: ./rails-entrypoint.sh
+    command: bundle exec puma -C config/puma_production.rb -v
+
+  green_busybox:
+    image: busybox
+    volumes:
+      - /bundle
+
+  blue_busybox:
+    image: busybox
+    volumes:
+      - /bundle
