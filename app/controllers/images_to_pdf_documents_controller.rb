@@ -1,4 +1,4 @@
-class ImageToPdfDocumentsController < ApplicationController
+class ImagesToPdfDocumentsController < ApplicationController
   def index
     @document = ImageToPdf::Document.new
   end

@@ -43,7 +43,6 @@ GEM
     arel (7.1.4)
     bcrypt (3.1.11)
     builder (3.2.2)
-    byebug (9.0.6)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -137,9 +136,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.4.0)
-      byebug (~> 9.0)
-      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     public_suffix (2.0.4)
@@ -260,7 +256,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   carrierwave
   coffee-rails (~> 4.2)
   devise
@@ -272,7 +267,6 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.18)
-  pry-byebug
   pry-rails
   puma (~> 3.0)
   pundit

@@ -19,11 +19,9 @@ gem 'slim'
 gem 'tzinfo-data'
 
 group :development, :test do
-  gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'pry-rails'
-  gem 'pry-byebug'
 end
 
 group :development do
@@ -35,6 +33,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
+  #gem 'guard-livereload', '~> 2.5', require: false
 end
 
 group :test do
