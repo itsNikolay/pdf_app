@@ -4,5 +4,5 @@ var DownloadLink = function(linkEl) {
 
 DownloadLink.prototype.refresh = function(response) {
   var id = response.data.id;
-  this.linkEl.href = '/image_to_pdf_documents/'+id+'.pdf';
+  this.linkEl.href = Routes.images_to_pdf_pdf(id);
 };

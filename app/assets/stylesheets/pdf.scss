@@ -1,3 +1,28 @@
+.preview {
+  text-align: center;
+}
+
+.preview-container {
+}
+
+.preview-hand {
+  width: 30px;
+  height: 110px;
+  float: left;
+  cursor: -webkit-grab;
+  border: 1px solid grey;
+  background: greenyellow;
+}
+
 .preview-image {
   display: block;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+ul.navigation {
+  li {
+    display: inline;
+    padding-right: 10px;
+  }
 }

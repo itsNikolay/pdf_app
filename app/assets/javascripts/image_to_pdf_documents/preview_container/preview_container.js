@@ -1,18 +1,13 @@
-var PreviewContainer = function(previewEl) {
-  this.previewEl = previewEl;
+function PreviewContainer(el) {
+  this.el = el;
 };
 
-PreviewContainer.prototype.append = function(element) {
-  this.previewEl.append(element);
-};
+PreviewContainer.prototype = {
+  append: function(els) {
+    this.el.append.apply(this.el, els);
+  },
 
-PreviewContainer.prototype.appendAll = function(elements) {
-  this.clear();
-  elements.forEach(function(element) {
-    this.append(element);
-  }.bind(this));
-};
-
-PreviewContainer.prototype.clear = function() {
-  this.previewEl.innerHTML = '';
+  clear: function() {
+    this.el.innerHTML = '';
+  }
 };

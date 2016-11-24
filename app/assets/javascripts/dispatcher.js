@@ -5,7 +5,7 @@ window.onload = function () {
   var action     = dataset.action;
 
   switch (controller) {
-    case 'image_to_pdf_documents':
+    case 'images_to_pdf_documents':
       if (action === 'index') {
         var input    = document.querySelector('#files');
         var preview  = document.querySelector('#preview');
@@ -20,9 +20,11 @@ window.onload = function () {
         imageUploader.on('ajax:success', fileInput.clearReaders.bind(fileInput));
         imageUploader.on('ajax:success', downloadLink.refresh.bind(downloadLink));
         imageUploader.on('ajax:success', function(response) {
-          var list = new PreviewImageList(response);
-          var elements = list.elements();
-          previewContainer.appendAll(elements);
+          var urls = response.data.image_to_pdf_images.map(function (el) {
+            return el.attachment.url;
+          });
+          var elements = PreviewImage.elements(urls);
+          previewContainer.append(elements);
         });
       }
       break;

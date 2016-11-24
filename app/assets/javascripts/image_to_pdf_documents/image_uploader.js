@@ -1,4 +1,4 @@
-var ImageUploader = function() {};
+function ImageUploader() {};
 
 MicroEvent.mixin(ImageUploader);
 
@@ -11,10 +11,10 @@ ImageUploader.prototype.upload = function(readers) {
   };
 
   if (this.pdfDocumentId) {
-    path   = '/image_to_pdf_documents/'+this.pdfDocumentId+'.json';
+    path   = Routes.post_images_to_pdf(this.pdfDocumentId);
     method = 'put';
   } else {
-    path   = '/image_to_pdf_documents.json';
+    path   = Routes.images_to_pdf();
     method = 'post';
   }
 
