@@ -1,13 +1,13 @@
-var ImageReader = function() {};
+//var ImageReader = function() {};
 
-MicroEvent.mixin(ImageReader);
+//MicroEvent.mixin(ImageReader);
 
-ImageReader.prototype.read = function(file) {
-  this.reader = new FileReader();
-  this.reader.onload = this.onLoad.bind(this);
-  this.reader.readAsDataURL(file);
-};
+//ImageReader.prototype.read = function(file) {
+  //this.reader = new FileReader();
+  //this.reader.onload = this.onLoad.bind(this);
+  //this.reader.readAsDataURL(file);
+//};
 
-ImageReader.prototype.onLoad = function() {
-  this.fire('read', this);
-};
+//ImageReader.prototype.onLoad = function() {
+  //this.fire('read', this);
+//};
