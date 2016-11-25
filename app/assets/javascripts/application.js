@@ -2,6 +2,7 @@
 //= require underscore
 //= require backbone
 //= require backbone.nativeview
+//= require backbone.sync
 //= require microevent
 //= require_tree ./models
 //= require_tree ./collections
