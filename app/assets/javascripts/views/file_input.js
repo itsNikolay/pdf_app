@@ -5,7 +5,10 @@ var FileInput = Backbone.NativeView.extend({
     'change': 'open'
   },
 
-  open: function() {
-    [].forEach.call(this.el.files, this.collection.addFile.bind(this.collection));
+  open: function(e) {
+    [].forEach.call(
+      this.el.files,
+      this.collection.addData.bind(this.collection)
+    );
   }
 });

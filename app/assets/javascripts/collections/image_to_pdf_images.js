@@ -1,5 +1,7 @@
-var ReadersCollection = Backbone.Collection.extend({
-  addFile: function(file) {
+var ImageToPdfImages = Backbone.Collection.extend({
+  model: ImageToPdfImage,
+
+  addData: function(file) {
     var reader = new FileReader();
     reader.onload = this.addImage.bind(this);
     reader.readAsDataURL(file);
@@ -7,7 +9,6 @@ var ReadersCollection = Backbone.Collection.extend({
 
   addImage: function(e) {
     var result = e.target.result;
-    var image = new Image({ image: result });
-    this.push(image);
+    this.push({ attachment_data: result });
   }
 });
