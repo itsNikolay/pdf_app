@@ -13,5 +13,5 @@
 
 window.onload = function() {
   new Workspace();
-  Backbone.history.start({pushState: true});
+  Backbone.history.start();
 }

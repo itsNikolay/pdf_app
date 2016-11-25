@@ -1,6 +1,6 @@
 var Workspace = Backbone.Router.extend({
   routes: {
-    'images_to_pdf': 'imagesToPdf'
+    'images_to_pdf_document': 'imagesToPdf'
   },
 
   imagesToPdf: function() {
