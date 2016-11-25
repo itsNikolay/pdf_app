@@ -26,7 +26,7 @@
     });
 
     // Default JSON-request options.
-    var params = {type: type, dataType: 'json'};
+    var params = {method: type, responseType: 'json'};
 
     // Ensure that we have a URL.
     if (!options.url) {
@@ -48,7 +48,7 @@
     // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
     // And an `X-HTTP-Method-Override` header.
     if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
-      params.type = 'POST';
+      params.method = 'POST';
       if (options.emulateJSON) params.data._method = type;
       var beforeSend = options.beforeSend;
       options.beforeSend = function(xhr) {
@@ -58,7 +58,7 @@
     }
 
     // Don't process data on a non-GET request.
-    if (params.type !== 'GET' && !options.emulateJSON) {
+    if (params.method !== 'GET' && !options.emulateJSON) {
       params.processData = false;
     }
 
@@ -70,24 +70,34 @@
       if (error) error.call(options.context, xhr, textStatus, errorThrown);
     };
 
+    params.headers = { "Content-Type":"application/json; charset=utf-8" };
+
     // Make the request, allowing the user to override any Ajax options.
     var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
-    model.trigger('request', model, xhr, options);
+    xhr.then(function (response) {
+      console.log(response);
+      options.success(response.data)
+      model.trigger('request', model, response, options);
+    }).catch(function (error) {
+      options.error(error)
+      console.log(error);
+    });
     return xhr;
   };
 
   // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
   var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'patch': 'PATCH',
-    'delete': 'DELETE',
-    'read': 'GET'
+    'create': 'post',
+    'update': 'put',
+    'patch':  'patch',
+    'delete': 'delete',
+    'read':   'get'
   };
 
   // Set the default implementation of `Backbone.ajax` to proxy through to `$`.
   // Override this if you'd like to use a different library.
   Backbone.ajax = function() {
-    return Backbone.$.ajax.apply(Backbone.$, arguments);
+    //return Backbone.$.ajax.apply(Backbone.$, arguments);
+    return axios.apply(axios, arguments);
   };
 
