@@ -1,22 +1,12 @@
-class Base64ToFile
-  attr_reader :base64
-
-  def initialize(base64)
-    @base64 = base64
-  end
-
-  def file
-    @tempfile ||= Tempfile.new(['file', ".#{ext}"]).tap do |f|
-      f.binmode
-      f.write(content)
-      f.close
-    end
+module Base64Attribute
+  def data=(base64)
+    @data = base64
   end
 
   private
 
   def split
-    @split ||= base64.split(',')
+    @split ||= @data.split(',')
   end
 
   def content_type
@@ -30,4 +20,5 @@ class Base64ToFile
   def content
     @content ||= Base64.decode64(split.last)
   end
+
 end

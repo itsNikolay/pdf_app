@@ -1,11 +1,11 @@
 class FilesToPdf
   attr_reader :files, :path
 
-  def initialize(files, path = '/tmp/sample.pdf')
+  def initialize(files, path = "/tmp/#{rand(9999)}.pdf")
     @files, @path = files, path
   end
 
-  def write_file(path)
+  def write_file
     image_list.write(path)
   end
 

@@ -1,5 +1,4 @@
 class ImagesToPdfDocumentsController < ApplicationController
-  #before_action only: [:create, :update], :parse_base64
 
   def index
     @document = ImageToPdf::Document.new
@@ -13,8 +12,6 @@ class ImagesToPdfDocumentsController < ApplicationController
     else
       render json: @document.errors.to_json, status: :unprocessable_entity
     end
-  ensure
-    unlink_files
   end
 
   def update
@@ -31,34 +28,15 @@ class ImagesToPdfDocumentsController < ApplicationController
 
     respond_to do |format|
       format.pdf {
-        path = '/tmp/sample.pdf'
-        FilesToPdf.new(@document.image_to_pdf_images.map(&:attachment)).write_file(path)
-        send_file path, type: 'application/pdf'
+        send_file @document.generate_attachment.path, type: 'application/pdf'
       }
     end
   end
 
   private
 
-  def image_to_pdf_document_params
-    {
-      image_to_pdf_images_attributes: files.map { |f| { attachment: f } }
-    }
-  end
-
-  def unlink_files
-    files.each(&:unlink)
-    @files = nil
-  end
-
   def permitted_params
     params.require(:image_to_pdf_document)
-      .permit(image_to_pdf_images_attributes: [:attachment])
-  end
-
-  def parse_base64
-    params.dig(:image_to_pdf_document, :image_to_pdf_images_attributes).try(:map) do |param|
-      params[:attachment] = Base64ToFile.new(params[:data]).file
-    end
+      .permit(image_to_pdf_images_attributes: [:attachment_data])
   end
 end
