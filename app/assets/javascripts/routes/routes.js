@@ -1,22 +1,12 @@
 var Workspace = Backbone.Router.extend({
   routes: {
-    "images_to_pdf": 'help'
+    'images_to_pdf': 'imagesToPdf'
   },
 
-  help: function() {
-    var container = document.querySelector('#container');
-    var preview = document.createElement('ul');
-    preview.id = 'preview';
+  imagesToPdf: function() {
     var readers = new ReadersCollection();
-    var fileInput = new FileInput({
-      collection: readers
-    }).render();
-    var previewBlock = new PreviewBlock({
-      collection: readers
-    });
-    container.append(fileInput.el)
-    container.append(preview)
-    preview.append(previewBlock.el)
+    new FileInput({ collection: readers });
+    new PreviewBlock({ collection: readers });
   }
 });
 

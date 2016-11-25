@@ -1,10 +1,12 @@
 class ImagesToPdfDocumentsController < ApplicationController
+  #before_action only: [:create, :update], :parse_base64
+
   def index
     @document = ImageToPdf::Document.new
   end
 
   def create
-    @document = ImageToPdf::Document.new(image_to_pdf_document_params)
+    @document = ImageToPdf::Document.new(permitted_params)
 
     if @document.save
       render json: @document.as_json(include: :image_to_pdf_images), status: :created
@@ -49,9 +51,14 @@ class ImagesToPdfDocumentsController < ApplicationController
     @files = nil
   end
 
-  def files
-    @files ||= params[:images].map do |base64|
-      Base64ToFile.new(base64).file
+  def permitted_params
+    params.require(:image_to_pdf_document)
+      .permit(image_to_pdf_images_attributes: [:attachment])
+  end
+
+  def parse_base64
+    params.dig(:image_to_pdf_document, :image_to_pdf_images_attributes).try(:map) do |param|
+      params[:attachment] = Base64ToFile.new(params[:data]).file
     end
   end
 end

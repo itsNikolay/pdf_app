@@ -1,17 +1,8 @@
 var FileInput = Backbone.NativeView.extend({
-  id: 'files',
-  tagName: "input",
-  className: "document-row",
-
-  attributes: {
-    type: 'file',
-    accept: 'image/png,image/gif,image/jpeg',
-    multiple: 'multiple'
-  },
+  el: document.querySelector('input#files'),
 
   events: {
-    'change': 'open',
-    'finished': 'finish'
+    'change': 'open'
   },
 
   open: function() {
