@@ -2,7 +2,7 @@ var PreviewBlock = Backbone.NativeView.extend({
   el: document.querySelector('ul#preview'),
 
   initialize: function() {
-    this.listenTo(this.collection, 'add', this.render);
+    this.listenTo(this.model.imageToPdfImages, 'add', this.render);
   },
 
   render: function() {
@@ -11,7 +11,7 @@ var PreviewBlock = Backbone.NativeView.extend({
   },
 
   imageEls: function() {
-    return this.collection.models.map(function(model) {
+    return this.model.imageToPdfImages.models.map(function(model) {
       return this.imageTemplate(model.attributes);
     }.bind(this)).join('');
   },

@@ -70,7 +70,10 @@
       if (error) error.call(options.context, xhr, textStatus, errorThrown);
     };
 
-    params.headers = { "Content-Type":"application/json; charset=utf-8" };
+    params.headers = {
+      "Accept":"application/json",
+      "Content-Type":"application/json; charset=utf-8"
+    };
 
     // Make the request, allowing the user to override any Ajax options.
     var xhr = options.xhr = Backbone.ajax(_.extend(params, options));

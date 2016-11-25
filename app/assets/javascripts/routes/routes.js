@@ -4,9 +4,12 @@ var Workspace = Backbone.Router.extend({
   },
 
   imagesToPdfDocuments: function() {
-    var imageToPdfImages = new ImageToPdfImages();
-    new FileInput({ collection: imageToPdfImages });
-    new PreviewBlock({ collection: imageToPdfImages });
+    var imageToPdfDocument = new ImageToPdfDocument({});
+    var fileInput = new FileInput({ model: imageToPdfDocument });
+    new PreviewBlock({ model: imageToPdfDocument });
+    fileInput.on('finished', function() {
+      var json = this.model.save();
+    })
   }
 });
 

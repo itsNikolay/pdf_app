@@ -5,6 +5,10 @@ class ImagesToPdfDocumentsController < ApplicationController
   end
 
   def create
+    pp '======='
+    pp request.format
+    pp request.content_type
+    pp '======='
     @document = ImageToPdf::Document.new(permitted_params)
 
     if @document.save
@@ -16,7 +20,7 @@ class ImagesToPdfDocumentsController < ApplicationController
 
   def update
     @document = ImageToPdf::Document.find(params[:id])
-    if @document.update(image_to_pdf_document_params)
+    if @document.update(permitted_params)
       render json: @document.as_json(include: :image_to_pdf_images), status: :created
     else
       render json: @document.errors.to_json, status: :unprocessable_entity
@@ -36,7 +40,7 @@ class ImagesToPdfDocumentsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:image_to_pdf_document)
+    params.require(:images_to_pdf_document)
       .permit(image_to_pdf_images_attributes: [:attachment_data])
   end
 end
