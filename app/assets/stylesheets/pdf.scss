@@ -3,6 +3,16 @@
 }
 
 .preview-container {
+  overflow: hidden;
+}
+
+.preview-controls {
+  float: left;
+
+  .move-down,
+  .move-up {
+    display: block;
+  }
 }
 
 .preview-hand {
@@ -17,11 +27,13 @@
 .preview-image {
   padding: 5px;
   border: 1px solid black;
+  float: left;
 }
 
 ul.preview {
   li {
-    display: inline;
+    height: 110px;
     padding-right: 10px;
+    list-style: none;
   }
 }
