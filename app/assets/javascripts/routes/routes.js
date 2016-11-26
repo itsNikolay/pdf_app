@@ -7,6 +7,7 @@ var Workspace = Backbone.Router.extend({
     var imageToPdfDocument = new ImageToPdfDocument();
     var fileInput = new FileInput({ model: imageToPdfDocument });
     new PreviewBlock({ model: imageToPdfDocument });
+    new DownloadLink({ model: imageToPdfDocument });
     fileInput.on('finished', function() { this.model.save(); })
   }
 });
