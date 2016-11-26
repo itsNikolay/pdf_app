@@ -2,12 +2,12 @@ var ImageToPdfDocument = Backbone.Model.extend({
   urlRoot : '/images_to_pdf_documents',
 
   constructor: function() {
-    this.imageToPdfImages = new ImageToPdfImages({sort: true});
+    this.imageToPdfImages = new ImageToPdfImages();
     Backbone.Model.apply(this, arguments);
   },
 
   parse: function(resp, opts) {
-    this.imageToPdfImages.reset(resp.image_to_pdf_images, {sort: true});
+    this.imageToPdfImages.reset(resp.image_to_pdf_images);
     return resp;
   },
 

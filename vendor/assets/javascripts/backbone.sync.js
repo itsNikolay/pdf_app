@@ -79,7 +79,6 @@
     var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
     model.trigger('request', model, xhr, options);
     xhr.then(function (response) {
-      console.log(response);
       model.trigger('request:success', model, response, options);
       options.success(response.data)
     }).catch(function (error) {
