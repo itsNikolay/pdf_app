@@ -2,28 +2,16 @@ var PreviewBlock = Backbone.NativeView.extend({
   el: document.querySelector('ul#preview'),
 
   events: {
-    'click button.move-up':   'moveUp',
-    'click button.move-down': 'moveDown'
+    'click button.move-up':   'move',
+    'click button.move-down': 'move'
   },
 
-  moveUp: function (e) {
-    var id = e.target.dataset.id;
-    var model = this.model.imageToPdfImages.get(id);
-    var ind = this.model.imageToPdfImages.models.indexOf(model);
-    var neibour = this.model.imageToPdfImages.at(ind - 1);
-    if (neibour) {
-      var newPos = neibour.get('position');
-      var oldPos = model.get('position');
-      model.set('position', newPos);
-      neibour.set('position', oldPos);
-    }
-  },
-
-  moveDown: function (e) {
-    var id = e.target.dataset.id;
-    var model = this.model.imageToPdfImages.get(id);
-    var ind = this.model.imageToPdfImages.models.indexOf(model);
-    var neibour = this.model.imageToPdfImages.at(ind + 1);
+  move: function (e) {
+    var neibourIncrement = e.target.classList.contains('move-up') ? 1 : -1;
+    var images  = this.model.imageToPdfImages;
+    var model   = images.get(e.target.dataset.id);
+    var index   = images.models.indexOf(model);
+    var neibour = images.at(index - neibourIncrement);
     if (neibour) {
       var newPos = neibour.get('position');
       var oldPos = model.get('position');

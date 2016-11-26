@@ -1,3 +1,5 @@
+$black: #000;
+
 .preview {
   text-align: center;
 }
@@ -15,25 +17,16 @@
   }
 }
 
-.preview-hand {
-  width: 30px;
-  height: 110px;
-  float: left;
-  cursor: -webkit-grab;
-  border: 1px solid grey;
-  background: greenyellow;
-}
-
 .preview-image {
-  padding: 5px;
-  border: 1px solid black;
+  border: 1px solid $black;
   float: left;
+  padding: 5px;
 }
 
-ul.preview {
+.preview-list {
   li {
     height: 110px;
-    padding-right: 10px;
     list-style: none;
+    padding-right: 10px;
   }
 }
