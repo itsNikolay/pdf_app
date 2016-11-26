@@ -5,10 +5,6 @@ class ImagesToPdfDocumentsController < ApplicationController
   end
 
   def create
-    pp '======='
-    pp request.format
-    pp request.content_type
-    pp '======='
     @document = ImageToPdf::Document.new(permitted_params)
 
     if @document.save
@@ -40,7 +36,12 @@ class ImagesToPdfDocumentsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:images_to_pdf_document)
-      .permit(image_to_pdf_images_attributes: [:attachment_data])
+    params.require(:images_to_pdf_document).permit(
+      :id,
+      image_to_pdf_images_attributes: [
+        :attachment_data, :position,
+        :id, :image_to_pdf_document_id, :created_at, :updated_at, attachment: [:id, :url]
+      ]
+    )
   end
 end

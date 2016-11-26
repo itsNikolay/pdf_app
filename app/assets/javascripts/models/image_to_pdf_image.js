@@ -1,1 +1,5 @@
-var ImageToPdfImage = Backbone.Model.extend({});
+var ImageToPdfImage = Backbone.Model.extend({
+  defaults: {
+    "attachment": {}
+  }
+});

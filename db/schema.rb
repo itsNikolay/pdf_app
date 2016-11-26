@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125183707) do
+ActiveRecord::Schema.define(version: 20161125232848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20161125183707) do
   end
 
   create_table "image_to_pdf_images", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "attachment",               null: false
-    t.uuid     "image_to_pdf_document_id", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "attachment",                           null: false
+    t.uuid     "image_to_pdf_document_id",             null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "position",                 default: 0
+    t.index ["id", "position"], name: "index_image_to_pdf_images_on_id_and_position", using: :btree
     t.index ["image_to_pdf_document_id"], name: "index_image_to_pdf_images_on_image_to_pdf_document_id", using: :btree
   end
 

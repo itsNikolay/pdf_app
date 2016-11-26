@@ -9,6 +9,6 @@ var ImageToPdfImages = Backbone.Collection.extend({
 
   addImage: function(e) {
     var result = e.target.result;
-    this.push({ attachment_data: result });
+    this.push({ attachment_data: result, position: this.length });
   }
 });

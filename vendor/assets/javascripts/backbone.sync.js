@@ -77,11 +77,13 @@
 
     // Make the request, allowing the user to override any Ajax options.
     var xhr = options.xhr = Backbone.ajax(_.extend(params, options));
+    model.trigger('request', model, xhr, options);
     xhr.then(function (response) {
       console.log(response);
+      model.trigger('request:success', model, response, options);
       options.success(response.data)
-      model.trigger('request', model, response, options);
     }).catch(function (error) {
+      model.trigger('request:error', model, error, options);
       options.error(error)
       console.log(error);
     });
