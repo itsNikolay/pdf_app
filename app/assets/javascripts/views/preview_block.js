@@ -2,10 +2,11 @@ var PreviewBlock = Backbone.NativeView.extend({
   el: document.querySelector('ul#preview'),
 
   initialize: function() {
-    this.listenTo(this.model.imageToPdfImages, 'update reset', this.render);
+    this.listenTo(this.model.imageToPdfImages, 'update reset sort', this.render);
   },
 
   render: function() {
+    console.log('called', this, arguments);
     this.el.innerHTML = this.imageEls();
     return this;
   },

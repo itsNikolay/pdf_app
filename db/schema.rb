@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20161125232848) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "position",                 default: 0
-    t.index ["id", "position"], name: "index_image_to_pdf_images_on_id_and_position", using: :btree
     t.index ["image_to_pdf_document_id"], name: "index_image_to_pdf_images_on_image_to_pdf_document_id", using: :btree
   end
 

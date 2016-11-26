@@ -1,5 +1,14 @@
 var ImageToPdfImages = Backbone.Collection.extend({
   model: ImageToPdfImage,
+  comparator: 'position',
+
+  initialize: function () {
+    this.on('change:position', this.changePosition, this);
+  },
+
+  changePosition: function () {
+    this.reset(this.models);
+  },
 
   addData: function(file) {
     var reader = new FileReader();
@@ -9,6 +18,6 @@ var ImageToPdfImages = Backbone.Collection.extend({
 
   addImage: function(e) {
     var result = e.target.result;
-    this.push({ attachment_data: result, position: this.length });
+    this.add({ attachment_data: result, position: this.length });
   }
 });
