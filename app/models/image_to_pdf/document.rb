@@ -2,7 +2,8 @@ class ImageToPdf::Document < ApplicationRecord
   self.table_name = :image_to_pdf_documents
 
   # NOTE: :foreign_key required with AR module
-  has_many :image_to_pdf_images, -> { order :position },
+  has_many :image_to_pdf_images,
+    -> { order(position: :asc) },
     class_name: 'ImageToPdf::Image',
     foreign_key: :image_to_pdf_document_id
 

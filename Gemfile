@@ -7,6 +7,7 @@ gem 'devise'
 gem 'pundit'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'acts_as_list'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'

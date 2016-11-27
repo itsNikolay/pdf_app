@@ -6,6 +6,8 @@ class ImageToPdf::Image < ApplicationRecord
 
   mount_uploader :attachment, FileUploader
 
+  acts_as_list scope: :image_to_pdf_document
+
   def attachment_data=(base64)
     value = Base64ToString.new(base64).string
     self.attachment = value

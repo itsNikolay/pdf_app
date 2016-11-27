@@ -6,22 +6,14 @@ var PreviewBlock = Backbone.NativeView.extend({
     'click button.move-down': 'move'
   },
 
-  // TODO: do it on backend
   move: function (e) {
-    var id = e.target.dataset.id;
-    var neibourIncrement = e.target.classList.contains('move-up') ? -1 : 1;
-    var images  = this.model.get('image_to_pdf_images');
-    var model   = _.find(images, function(image) { return image.id == id; })
-    var index   = images.indexOf(model);
-    var neibour = images[index + neibourIncrement];
-    if (neibour) {
-      var newPos = neibour['position'];
-      var oldPos = model['position'];
-      this.model.imageToPdfImageAttributes.add([
-        { id: model.id,   position: newPos },
-        { id: neibour.id, position: oldPos }
-      ]);
-    }
+    var action = e.target.classList.contains('move-up') ? 'moveHigherUrl' : 'moveLowerUrl';
+    var id     = e.target.dataset.id;
+    var images = this.model.get('image_to_pdf_images');
+    var attrs  = _.find(images, function(image) { return image.id == id; });
+    var model  = new ImageToPdfImage(attrs);
+    model.on('request:success', function(_, resp) { this.set(resp.data); }, this.model);
+    return model[action]();
   },
 
   initialize: function() {

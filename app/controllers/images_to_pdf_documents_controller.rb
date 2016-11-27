@@ -27,6 +27,9 @@ class ImagesToPdfDocumentsController < ApplicationController
     @document = ImageToPdf::Document.find(params[:id])
 
     respond_to do |format|
+      format.json {
+        render json: @document.as_json(include: :image_to_pdf_images)
+      }
       format.pdf {
         send_file @document.generate_attachment.path, type: 'application/pdf'
       }

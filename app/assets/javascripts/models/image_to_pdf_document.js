@@ -18,7 +18,6 @@ var ImageToPdfDocument = Backbone.Model.extend({
   },
 
   addFromData: function (dataArr) {
-    var startFrom = this.get('image_to_pdf_images').length;
-    this.imageToPdfImageAttributes.addFromData(dataArr, startFrom);
+    this.imageToPdfImageAttributes.addFromData(dataArr);
   },
 });
