@@ -10,7 +10,13 @@ var ImageToPdfImages = Backbone.Collection.extend({
     this.reset(this.models);
   },
 
-  addData: function(file) {
+  openFiles: function (files) {
+    for (var i = 0, l = files.length; i < l; i++) {
+      this.openFile(files[i]);
+    }
+  },
+
+  openFile: function(file) {
     var reader = new FileReader();
     reader.onload = this.addImage.bind(this);
     reader.readAsDataURL(file);

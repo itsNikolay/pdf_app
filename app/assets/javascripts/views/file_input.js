@@ -5,20 +5,21 @@ var FileInput = Backbone.NativeView.extend({
     'change': 'open'
   },
 
-  initialize: function() {
-    this.processedCount = 0;
-    this.listenTo(this.model.imageToPdfImages, 'add', this.checkFinish);
-  },
-
   open: function(e) {
-    [].forEach.call(
-      this.el.files,
-      this.model.imageToPdfImages.addData.bind(this.model.imageToPdfImages)
-    );
+    var fileOpener = new FileOpener();
+    fileOpener.open(e.target.files);
+    fileOpener.on('finished', this.addImages, this);
   },
 
-  checkFinish: function() {
-    if (this.el.files.length === ++this.processedCount)
-      this.trigger('finished') && (this.processedCount = 0);
-  }
+  addImages: function (dataArr) {
+    var startFrom = this.model.imageToPdfImages.length + 1;
+    var records = dataArr.map(function(data, i) {
+      return {
+        attachment_data: data,
+        position:        startFrom + i
+      };
+    });
+
+    this.model.imageToPdfImages.add(records);
+  },
 });

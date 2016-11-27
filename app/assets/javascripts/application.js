@@ -4,6 +4,7 @@
 //= require backbone.nativeview
 //= require backbone.sync
 //= require microevent
+//= require_tree ./services
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views

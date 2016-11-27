@@ -3,6 +3,7 @@ var ImageToPdfDocument = Backbone.Model.extend({
 
   constructor: function() {
     this.imageToPdfImages = new ImageToPdfImages();
+    this.imageToPdfImages.on('add', function() { this.save(); }, this);
     Backbone.Model.apply(this, arguments);
   },
 
