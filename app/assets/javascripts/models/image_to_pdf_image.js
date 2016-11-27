@@ -1,6 +1,6 @@
 var ImageToPdfImage = Backbone.Model.extend({
   url: function () {
-    var documentId = this.get('images_to_pdf_document_id');
+    var documentId = this.get('image_to_pdf_document_id');
     var id = this.id;
     return '/images_to_pdf_documents/'+documentId+'/images_to_pdf_images/'+id;
   },

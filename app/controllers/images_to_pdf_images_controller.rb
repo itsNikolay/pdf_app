@@ -1,8 +1,5 @@
 class ImagesToPdfImagesController < ApplicationController
-  def destroy
-  end
-
-  [:move_lower, :move_higher].each do |method|
+  [:move_lower, :move_higher, :destroy].each do |method|
     define_method method do
       if image.public_send(method)
         render json: document.as_json(include: :image_to_pdf_images), status: :created
@@ -15,14 +12,14 @@ class ImagesToPdfImagesController < ApplicationController
   private
 
   def image
-    @image ||= ImageToPdf::Image.find_by({
-      image_to_pdf_document_id: params[:image_to_pdf_document_id],
+    @image ||= ImageToPdf::Image.find_by!({
+      image_to_pdf_document_id: params[:images_to_pdf_document_id],
       id: params[:id]
     })
   end
 
   def document
-    @document ||= ImageToPdf::Document.find(params[:image_to_pdf_document_id])
+    @document ||= ImageToPdf::Document.find(params[:images_to_pdf_document_id])
   end
 
   def image_params
