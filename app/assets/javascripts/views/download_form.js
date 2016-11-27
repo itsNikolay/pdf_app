@@ -1,5 +1,5 @@
-var DownloadLink = Backbone.NativeView.extend({
-  el: document.querySelector('a#download'),
+var DownloadForm = Backbone.NativeView.extend({
+  el: 'form#download-form',
 
   initialize: function () {
     this.listenTo(this.model, 'change:id', this.buildLink);
@@ -7,6 +7,7 @@ var DownloadLink = Backbone.NativeView.extend({
 
   buildLink: function (model, id) {
     var link = model.url()+'.pdf';
-    this.el.href = link;
+    this.el.action = link;
+    this.el.querySelector('button').disabled = false;
   },
 });

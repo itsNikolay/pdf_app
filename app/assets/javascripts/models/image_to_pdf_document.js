@@ -1,20 +1,25 @@
 var ImageToPdfDocument = Backbone.Model.extend({
   urlRoot : '/images_to_pdf_documents',
 
+  defaults: {
+    image_to_pdf_images: [],
+    image_to_pdf_images_attributes: []
+  },
+
   constructor: function() {
-    this.imageToPdfImages = new ImageToPdfImages();
-    this.imageToPdfImages.on('add', function() { this.save(); }, this);
     Backbone.Model.apply(this, arguments);
+    this.imageToPdfImageAttributes = new ImageToPdfImageAttributes();
+    this.listenTo(this.imageToPdfImageAttributes, 'add', this.updateAttributes);
+    this.on('change:image_to_pdf_images_attributes', function() { this.save(); })
   },
 
-  parse: function(resp, opts) {
-    this.imageToPdfImages.reset(resp.image_to_pdf_images);
-    return resp;
+  updateAttributes: function() {
+    this.set('image_to_pdf_images_attributes', this.imageToPdfImageAttributes.toJSON());
+    this.imageToPdfImageAttributes.reset([]);
   },
 
-  toJSON: function() {
-    return {
-      image_to_pdf_images_attributes: this.imageToPdfImages.toJSON()
-    };
-  }
+  addFromData: function (dataArr) {
+    var startFrom = this.get('image_to_pdf_images').length;
+    this.imageToPdfImageAttributes.addFromData(dataArr, startFrom);
+  },
 });

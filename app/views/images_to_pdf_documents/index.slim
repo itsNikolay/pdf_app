@@ -1,14 +1,15 @@
-= content_for :title, 'Convert Image to PDF'
+= content_for :title, 'Convert Images to PDF'
 
-h1 Upload Your images
+h1 Upload Your Images
 
 p
   = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg'
 
 p
-  = link_to 'Download', '#', id: 'download', ref: 'nofolow'
+  = form_tag '/', method: :get, id: 'download-form', enforce_utf8: false
+    = button_tag 'Download', disabled: true
 
-ul#preview.preview-list
+#preview.preview-list
 
 script(type="text/html" id="template-image")
   = render 'template'

@@ -40,7 +40,7 @@ class ImagesToPdfDocumentsController < ApplicationController
       :id,
       image_to_pdf_images_attributes: [
         :attachment_data, :position,
-        :id, :image_to_pdf_document_id, :created_at, :updated_at, attachment: [:id, :url]
+        :id, :image_to_pdf_document_id, attachment: [:id, :url]
       ]
     )
   end

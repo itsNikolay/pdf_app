@@ -1,25 +1,34 @@
 var FileInput = Backbone.NativeView.extend({
-  el: document.querySelector('input#files'),
+  el: 'input#files',
 
   events: {
     'change': 'open'
   },
 
   open: function(e) {
-    var fileOpener = new FileOpener();
-    fileOpener.open(e.target.files);
-    fileOpener.on('finished', this.addImages, this);
+    this.readAll(e.target.files);
   },
 
-  addImages: function (dataArr) {
-    var startFrom = this.model.imageToPdfImages.length + 1;
-    var records = dataArr.map(function(data, i) {
-      return {
-        attachment_data: data,
-        position:        startFrom + i
-      };
-    });
+  readAll: function (files) {
+    this.count = 0;
+    this.size  = files.length;
+    this.dataArr = [];
 
-    this.model.imageToPdfImages.add(records);
+    for (var i = 0; i < files.length; i++) {
+      this.read(files[i]);
+    }
+  },
+
+  read: function(file) {
+    var reader = new FileReader();
+    reader.onload = this.issue.bind(this);
+    reader.readAsDataURL(file);
+  },
+
+  issue: function(e) {
+    this.dataArr.push(e.target.result);
+
+    if (++this.count === this.size)
+      this.trigger('finished', this.dataArr) && (this.count = 0);
   },
 });
