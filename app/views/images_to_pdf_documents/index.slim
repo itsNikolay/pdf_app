@@ -1,9 +1,11 @@
 = content_for :title, 'Convert Images to PDF'
 
-h1 Upload Your Images
+h1 Convert Images to PDF
 
 p
-  = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg'
+  label.pointer
+    span Upload your images:
+    = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg', class: 'pointer small-margin-left'
 
 p
   = form_tag '/', method: :get, id: 'download-form', enforce_utf8: false

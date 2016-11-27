@@ -1,5 +1,12 @@
 $black: #000;
 
+.navigation {
+  li {
+    display: inline;
+    margin-left: 10px;
+  }
+}
+
 .preview {
   text-align: center;
 }

@@ -6,8 +6,7 @@ var ImageToPdfDocument = Backbone.Model.extend({
     image_to_pdf_images_attributes: []
   },
 
-  constructor: function() {
-    Backbone.Model.apply(this, arguments);
+  initialize: function() {
     this.imageToPdfImageAttributes = new ImageToPdfImageAttributes();
     this.listenTo(this.imageToPdfImageAttributes, 'add', this.updateAttributes);
     this.on('change:image_to_pdf_images_attributes', function() { this.save(); })
