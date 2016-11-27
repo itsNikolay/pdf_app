@@ -1,7 +1,7 @@
 <ul>
   <% image_to_pdf_images.map(function(image_to_pdf_image) { %>
   <li class="preview-container">
-    <img class="preview-image" alt="" src="<%= image_to_pdf_image.attachment.url %>" height="100" width="100" />
+    <img class="preview-image" alt="" src="<%= image_to_pdf_image.attachment.thumb.url %>" height="100" width="100" />
     <div class="preview-controls">
       <button data-id="<%= image_to_pdf_image.id %>" class="move-up">Move Up</button>
       <button data-id="<%= image_to_pdf_image.id %>" class="move-down">Move Down</button>

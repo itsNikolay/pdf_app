@@ -1,5 +1,14 @@
 class FileUploader < CarrierWave::Uploader::Base
+  include CarrierWave::RMagick
+
   storage :file
+
+  before :store, :remember_cache_id
+  after :store, :delete_tmp_dir
+
+  version :thumb do
+    process resize_to_fill: [100, 100]
+  end
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -8,9 +17,6 @@ class FileUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
-
-  before :store, :remember_cache_id
-  after :store, :delete_tmp_dir
 
   def remember_cache_id(new_file)
     @cache_id_was = cache_id
