@@ -5,11 +5,14 @@ h1 Convert Images to PDF
 p
   label.pointer
     span Upload your images:
-    = file_field_tag :files, multiple: true, accept: 'image/png,image/gif,image/jpeg', class: 'pointer small-margin-left'
+    = file_field_tag :files,
+      multiple: true,
+      accept: 'image/png,image/gif,image/jpeg',
+      class: 'pointer small-margin-left'
 
 p
   = form_tag '/', method: :get, id: 'download-form', enforce_utf8: false
-    = button_tag 'Download', disabled: true
+    = button_tag 'Download PDF', disabled: true
 
 #preview.preview-list
 
