@@ -2,18 +2,22 @@
 
 h1.text-shadow Convert Images to PDF
 
-p
-  label
+.pure-g.l-box-bot
+  .pure-u-1
     span Upload your images:
+.pure-g.l-box-bot
+  .pure-u-1
     .file-upload.pure-button.button-success.box-shadow
       span Upload
       = file_field_tag :files,
         multiple: true,
         accept: 'image/png,image/gif,image/jpeg',
         class: 'pointer upload'
-    span.l-margin-left-small * ctrl + click / shift + click to choose multiple files
+    span.l-margin-left-small.line-height-34
+      | * ctrl + click / shift + click to choose multiple files
 
-p
+.pure-g
+  .pure-u-1
   = form_tag '/', method: :get, id: 'download-form', enforce_utf8: false
     = button_tag 'Download PDF', disabled: true,
       class: 'pure-button box-shadow pure-button-primary'
