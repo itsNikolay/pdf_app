@@ -15,25 +15,17 @@ $black: #000;
   overflow: hidden;
 }
 
-.preview-controls {
-  float: left;
-
-  .move-down,
-  .move-up {
-    display: block;
-  }
-}
-
 .preview-image {
   border: 1px solid $black;
-  float: left;
   padding: 5px;
 }
 
 .preview-list {
-  li {
-    height: 112px;
-    list-style: none;
-    padding-right: 10px;
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
   }
 }

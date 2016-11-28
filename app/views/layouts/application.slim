@@ -2,11 +2,14 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
     title= content_for :title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
-  body data-controller=controller_name data-action=action_name
+  body
     = render partial: 'header'
-    #container
-    = yield
+    .pure-g
+      .pure-u-1.l-box
+        = yield
     = javascript_include_tag 'application'

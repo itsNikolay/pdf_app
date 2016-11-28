@@ -3,13 +3,13 @@
 //= require backbone
 //= require backbone.nativeview
 //= require backbone.sync
-//= require microevent
+//= require custom-responsive-menu
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routes
 
-window.onload = function() {
+(function() {
   new Workspace();
   Backbone.history.start({pushState: true});
-}
+})();

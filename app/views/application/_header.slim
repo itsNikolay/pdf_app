@@ -1,4 +1,14 @@
-nav
-  ul.navigation
-    li= link_to 'Main', root_path
-    li= link_to 'Images to PDF', images_to_pdf_documents_path
+#menu.custom-wrapper.pure-g
+  .pure-u-1.pure-u-md-1-5
+    .pure-menu.text-shadow
+      a.pure-menu-heading.custom-brand href="#" File-Converter.online
+      a#toggle.custom-toggle href="#"
+        s.bar
+        s.bar
+  .pure-u-1.pure-u-md-1-3
+    .pure-menu.pure-menu-horizontal.custom-can-transform
+      ul.pure-menu-list
+        li.pure-menu-item
+          = link_to 'Home', root_path, class: 'pure-menu-heading pure-menu-link'
+        li.pure-menu-item
+          = link_to 'Images to PDF', images_to_pdf_documents_path, class: 'pure-menu-heading pure-menu-link'

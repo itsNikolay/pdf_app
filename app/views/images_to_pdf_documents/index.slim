@@ -1,21 +1,24 @@
 = content_for :title, 'Convert Images to PDF'
 
-h1 Convert Images to PDF
+h1.text-shadow Convert Images to PDF
 
 p
-  label.pointer
+  label
     span Upload your images:
-    = file_field_tag :files,
-      multiple: true,
-      accept: 'image/png,image/gif,image/jpeg',
-      class: 'pointer small-margin-left'
+    .file-upload.pure-button.button-success.box-shadow
+      span Upload
+      = file_field_tag :files,
+        multiple: true,
+        accept: 'image/png,image/gif,image/jpeg',
+        class: 'pointer upload'
+    span.l-margin-left-small * ctrl + click / shift + click to choose multiple files
 
 p
   = form_tag '/', method: :get, id: 'download-form', enforce_utf8: false
-    = button_tag 'Download PDF', disabled: true
+    = button_tag 'Download PDF', disabled: true,
+      class: 'pure-button box-shadow pure-button-primary'
 
 #preview.preview-list
 
 script(type="text/html" id="template-image")
   = render 'template'
-
