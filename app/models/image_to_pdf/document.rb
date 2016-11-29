@@ -19,7 +19,8 @@ class ImageToPdf::Document < ApplicationRecord
 
   def generate_attachment
     files = image_to_pdf_images.map(&:attachment)
-    files_to_pdf = FilesToPdf.new(files).tap(&:write_file)
-    self.attachment = File.open(files_to_pdf.path)
+    blob  = FilesToPdf.new(files).blob
+    path  = '/tmp/file-converter.online.pdf'
+    self.attachment = CarrierwaveStringIO.new(path, blob)
   end
 end

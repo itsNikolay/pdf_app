@@ -1,12 +1,12 @@
 class FilesToPdf
-  attr_reader :files, :path
+  attr_reader :files
 
-  def initialize(files, path = "/tmp/#{rand(9999)}.pdf")
-    @files, @path = files, path
+  def initialize(files, *args)
+    @files  = files
   end
 
-  def write_file
-    image_list.write(path)
+  def blob
+    image_list.to_blob { self.format = 'pdf' }
   end
 
   private

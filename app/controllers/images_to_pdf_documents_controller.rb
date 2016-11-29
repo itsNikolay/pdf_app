@@ -31,7 +31,9 @@ class ImagesToPdfDocumentsController < ApplicationController
         render json: @document.as_json(include: :image_to_pdf_images)
       }
       format.pdf {
-        send_file @document.generate_attachment.path, type: 'application/pdf'
+        @document.generate_attachment
+        @document.save!
+        send_file @document.attachment.path, type: 'application/pdf'
       }
     end
   end

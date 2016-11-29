@@ -6,15 +6,12 @@ RSpec.describe FilesToPdf do
       File.open(fixture_path + '/images/sample.gif'),
     ]
   end
-  let(:path) { nil }
 
-  subject(:instance) { described_class.new(files, path) }
+  subject(:instance) { described_class.new(files) }
 
-  describe '#write_file' do
-    let(:path) { Rails.root + '/tmp/sample.pdf' }
-    after { FileUtils.rm(path) if File.exist?(path) }
-    subject { instance.write_file }
+  describe '#blob' do
+    subject { instance.blob }
 
-    it { expect { subject }.to change(path, :file?) }
+    it { is_expected.to be_a String }
   end
 end

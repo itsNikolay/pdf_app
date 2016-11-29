@@ -42,6 +42,6 @@ RSpec.describe ImageToPdf::Document, type: :model do
   describe '#generate_attachment' do
   subject(:image_to_pdf_document) { build :image_to_pdf_document, :with_image_to_pdf_images }
     subject { image_to_pdf_document.generate_attachment }
-    it { is_expected.to be_a File }
+    it { expect { subject }.to change(image_to_pdf_document, :attachment_url) }
   end
 end
