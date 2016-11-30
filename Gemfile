@@ -8,6 +8,7 @@ gem 'pundit'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'acts_as_list'
+gem 'sitemap_generator'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'

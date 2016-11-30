@@ -14,6 +14,8 @@
 !/tmp/.keep
 
 /public/uploads
+/public/sitemap.*
 
 # Ignore Byebug command history file.
 .byebug_history
+.DS_Store
