@@ -12,6 +12,7 @@ html
     .pure-g
       .pure-u-1.l-box
         = yield
-    = stylesheet_link_tag 'application', media: 'all'
+    noscript id="deferred-styles"
+      = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
-    = render 'ga' if Rails.env.production?
+    /= render 'ga' if Rails.env.production?

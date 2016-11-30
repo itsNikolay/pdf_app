@@ -1,3 +1,6 @@
+//= require defer-style
+//= require analytics
+//= require analytics-init
 //= require axios
 //= require underscore
 //= require backbone
