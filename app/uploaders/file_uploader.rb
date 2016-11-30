@@ -4,7 +4,7 @@ class FileUploader < CarrierWave::Uploader::Base
   storage :file
 
   before :store, :remember_cache_id
-  after :store, :delete_tmp_dir
+  after  :store, :delete_tmp_dir
 
   version :thumb do
     process resize_to_fill: [100, 100]
