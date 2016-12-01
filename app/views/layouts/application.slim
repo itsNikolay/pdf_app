@@ -7,11 +7,15 @@ html
     meta name="description" content=content_for(:description)
     meta(name="viewport" content="width=device-width, initial-scale=1")
     = csrf_meta_tags
+    style
+      = Rails.application.assets.find_asset('inline.css').to_s.html_safe
   body
     = render partial: 'header'
     .pure-g
       .pure-u-1.l-box
         = yield
-    = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    noscript id="deferred-styles"
+      = stylesheet_link_tag 'application', media: 'all'
+    = render 'deferred_styles'
     = render 'ga' if Rails.env.production?

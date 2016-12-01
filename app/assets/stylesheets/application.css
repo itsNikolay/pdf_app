@@ -1,6 +1,4 @@
 /*
- *= require pure
  *= require grids-responsive
- *= require_tree .
- *= require_self
+ *= require_tree ./application
  */
